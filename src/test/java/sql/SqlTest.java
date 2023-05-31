@@ -1,8 +1,11 @@
 package sql;
 
+import Sqlqueries.SqlQueries;
+import org.example.Main;
 import org.junit.jupiter.api.Test;
 
 public class SqlTest {
+    protected SqlQueries Sql;
 
     // Retrieve the number of customers from the database
     // Check that the total number of customers is equal to 2
@@ -24,6 +27,9 @@ public class SqlTest {
     @Test
     public void retrieveTransactionsForAccount_checkTotalBalance_shouldBeZero() {
 
+    }
+    @Test
+    public void Queries() {
     }
 
 }
