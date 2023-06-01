@@ -25,7 +25,7 @@ public class SqlQueries {
                 String country = rs.getString("country");
 
                 System.out.println("This Address belongs to to Customer ID:" + ID +
-                        "\n\nAddress: " +street+", "+houseNumber+", "+zipCode+", "+city+", "+country);
+                        "\n\nThe following Address belongs to Customer ID:" + "\nStreet :" +street+"\nHouse Number : "+houseNumber+"\nZip Code : "+zipCode+"\nCity : "+city+"\nCountry : "+country);
             }
         }
             catch (SQLException e){
@@ -43,24 +43,25 @@ public class SqlQueries {
             while (rs.next()){
 
                 double balance = rs.getDouble("SUM(current_balance)");
+                System.out.println("The following balance belongs to Customer ID:" + ID+
+                        "\nBalance: "+ balance + "\n");
             }
         }
         catch (SQLException e){
             System.out.println(e.getMessage());
         }
-
     }
 
     public void AllTransactions(int id){
-        String SelectFromCustomers ="SELECT accounts.account_number , transactions.transaction_date , transactions.amount , transactions.transaction_type FROM accounts\n" +
+        String SelectFromCustomers = "SELECT accounts.account_number , transactions.transaction_date , transactions.amount , transactions.transaction_type FROM accounts\n" +
                 "INNER JOIN transactions\n" +
                 "ON accounts.account_number = transactions.account_number\n" +
                 "WHERE accounts.account_type = 'Savings'\n" +
-                "AND accounts.customer_id = " + id;
+                "AND accounts.customer_id = 2";
 
         try (Connection conn = DriverManager.getConnection(this.url, this.user , this.password);
-        PreparedStatement ps = conn.prepareStatement(SelectFromCustomers);
-        ResultSet rs = ps.executeQuery()){
+            PreparedStatement ps = conn.prepareStatement(SelectFromCustomers);
+            ResultSet rs = ps.executeQuery()){
 
             System.out.println("The following Information belongs to Customer ID: " + id);
 
@@ -68,17 +69,11 @@ public class SqlQueries {
                 String accountNumber = rs.getString("account_number");
                 String transactionDate = String.valueOf(rs.getDate("transaction_date"));
                 double amount = rs.getDouble("amount");
-                boolean transactionType = rs.getBoolean("transaction_type");
-
-                String transType;
-                if (transactionType) {
-                    transType = "Deposit";
-                } else {
-                    transType = "Withdrawal";
-                }
+                String transactionType = rs.getString("transaction_type");
 
                 System.out.println("\n Account Number : " + accountNumber +
                                         "\nDate : " + transactionDate +
+                                            "\nAmount :" + amount+
                                         "\nTransaction Type: " + transactionType + "\n");
             }
         }catch (SQLException e){
@@ -103,7 +98,7 @@ public class SqlQueries {
         return count;
     }
     public int ChecksThatTheUserWithFirstNameSarahHasTwoAccounts(){
-        String SelectFromCustomers = "SELECT count(account_number) FROM customers WHERE customer_id = 1";
+        String SelectFromCustomers = "SELECT count(account_number) FROM accounts WHERE customer_id = 1";
         int count = 0;
 
         try (Connection conn = DriverManager.getConnection(this.url, this.user , this.password);

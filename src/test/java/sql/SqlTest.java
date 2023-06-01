@@ -14,7 +14,7 @@ public class SqlTest {
     public void getAllCustomers_checkNumber_shouldBeTwo() {
         SqlQueries sql = new SqlQueries();
 
-        assertEquals(2,sql.TotalNumberOfCustomer());
+        assertEquals(2,sql.TotalNumberOfCustomer(), "Total number of Customers are not equal to 2 ");
     }
 
     // Retrieve all accounts for customer Sarah from the database
@@ -22,7 +22,7 @@ public class SqlTest {
     @Test
     public void getAccountsForSarah_checkNumber_shouldBeTwo() {
         SqlQueries sql = new SqlQueries();
-        assertEquals(2,sql.ChecksThatTheUserWithFirstNameSarahHasTwoAccounts());
+        assertEquals(2,sql.ChecksThatTheUserWithFirstNameSarahHasTwoAccounts(),"Sarah does not have 2 accounts");
     }
 
     // A test that checks that the total of all transactions is equal to 0 for a given account.
