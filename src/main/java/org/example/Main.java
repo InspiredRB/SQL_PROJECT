@@ -11,7 +11,7 @@ public class Main {
         System.out.println("Please enter Customer ID :");
         int id = scanner.nextInt();
 
-         sql.CustomerAddress(id);
+//        sql.CustomerAddress(id);
 //       sql.TotalAccountBalance(id);
 //       sql.AllTransactions(id);
     }

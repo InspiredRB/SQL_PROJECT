@@ -15,6 +15,7 @@ public class SqlTest {
         SqlQueries sql = new SqlQueries();
 
         assertEquals(2,sql.TotalNumberOfCustomer(), "Total number of Customers are not equal to 2 ");
+        System.out.println("There are a total number of 2 customers");
     }
 
     // Retrieve all accounts for customer Sarah from the database
@@ -23,6 +24,7 @@ public class SqlTest {
     public void getAccountsForSarah_checkNumber_shouldBeTwo() {
         SqlQueries sql = new SqlQueries();
         assertEquals(2,sql.ChecksThatTheUserWithFirstNameSarahHasTwoAccounts(),"Sarah does not have 2 accounts");
+        System.out.println("Sarah has 2 accounts");
     }
 
     // A test that checks that the total of all transactions is equal to 0 for a given account.
@@ -41,8 +43,9 @@ public class SqlTest {
 
         double balance = totalDeposits - totalWithdrawals;
 
-        assertEquals(20, balance , "Balance was not 20");
+        assertEquals(0, balance , "The balance is more than 0");
 
+        System.out.println("Balance is equal to 0 ");
     }
 }
 
